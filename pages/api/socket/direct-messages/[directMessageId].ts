@@ -2,7 +2,6 @@ import { currentProfilePages } from "@/lib/current-profile-pages";
 import { db } from "@/lib/db";
 import { NextApiResponseServerIo } from "@/types";
 import { MemberRole } from "@prisma/client";
-import { error } from "console";
 import { NextApiRequest } from "next";
 
 export default async function handler(
@@ -12,22 +11,26 @@ export default async function handler(
       if (req.method !== "DELETE" && req.method !== "PATCH") {
             return res.status(405).json({
                   error: "Method not supported"
-            })
+            });
       }
+
       try {
             const profile = await currentProfilePages(req);
             const { directMessageId, conversationId } = req.query;
             const { content } = req.body;
+
             if (!profile) {
                   return res.status(401).json({
-                        error: "authentication failed"
-                  })
+                        error: "Authentication failed"
+                  });
             }
+
             if (!conversationId) {
                   return res.status(400).json({
-                        error: "chat search failed"
-                  })
+                        error: "Chat search failed"
+                  });
             }
+
             const conversation = await db.conversation.findFirst({
                   where: {
                         id: conversationId as string,
@@ -56,16 +59,19 @@ export default async function handler(
                               }
                         }
                   }
-            })
+            });
+
             if (!conversation) {
-                  return res.status(404).json({ error: "chat not found" })
+                  return res.status(404).json({ error: "Chat not found" });
             }
+
             const member = conversation.memberOne.profile.id === profile.id ? conversation.memberOne : conversation.memberTwo;
             if (!member) {
                   return res.status(401).json({
-                        error: "member search failed"
-                  })
+                        error: "Member search failed"
+                  });
             }
+
             let directMessage = await db.directMessage.findFirst({
                   where: {
                         id: directMessageId as string,
@@ -78,21 +84,25 @@ export default async function handler(
                               }
                         }
                   }
-            })
+            });
+
             if (!directMessage || directMessage.deleted) {
                   return res.status(404).json({
-                        error: "message search failed"
-                  })
+                        error: "Message search failed"
+                  });
             }
+
             const isMessageOwner = directMessage.memberId === member.id;
             const isAdmin = member.role === MemberRole.ADMIN;
             const isModerator = member.role === MemberRole.MODERATOR;
             const canModify = isMessageOwner || isAdmin || isModerator;
+
             if (!canModify) {
                   return res.status(401).json({
-                        error: "Current Member is unauthroized to perform this action"
-                  })
+                        error: "Current Member is unauthorized to perform this action"
+                  });
             }
+
             if (req.method === "DELETE") {
                   directMessage = await db.directMessage.update({
                         where: {
@@ -103,8 +113,6 @@ export default async function handler(
                               content: "Owner or admin or moderator has deleted this message",
                               deleted: true,
                         },
-
-
                         include: {
                               member: {
                                     include: {
@@ -112,14 +120,16 @@ export default async function handler(
                                     }
                               }
                         }
-                  })
+                  });
             }
+
             if (req.method === "PATCH") {
                   if (!isMessageOwner) {
                         return res.status(401).json({
-                              error: "you are not authorized to update this message"
-                        })
+                              error: "You are not authorized to update this message"
+                        });
                   }
+
                   directMessage = await db.directMessage.update({
                         where: {
                               id: directMessageId as string,
@@ -134,15 +144,16 @@ export default async function handler(
                                     }
                               }
                         }
-                  })
+                  });
             }
+
             const updateKey = `chat:${conversation.id}:messages:update`;
-            res?.socket?.server?.io?.emit(updateKey, directMessage);
+            res.socket.server.io.emit(updateKey, directMessage);
             return res.status(200).json(directMessage);
       } catch (error) {
-            console.log("inside the messageid,", error)
+            console.log("Inside the messageId handler,", error);
             return res.status(500).json({
                   error: "Internal Server Error"
-            })
+            });
       }
 }

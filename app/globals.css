@@ -2,82 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
-html,body,:root{
-  height:100%;
-  width:100%;
+html,
+body,
+:root {
+  height: 100%;
+  width: 100%;
+}
+* {
+  border: 0;
 }
 @layer base {
-   .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
-     /* Hide scrollbar for IE, Edge and Firefox */
-      .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-    }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
   :root {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
 
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 224 71.4% 4.1%;
- 
+
     --primary: 220.9 39.3% 11%;
     --primary-foreground: 210 20% 98%;
- 
+
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
- 
+
     --muted: 220 14.3% 95.9%;
     --muted-foreground: 220 8.9% 46.1%;
- 
+
     --accent: 220 14.3% 95.9%;
     --accent-foreground: 220.9 39.3% 11%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 224 71.4% 4.1%;
- 
+
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
- 
+
     --card: 224 71.4% 4.1%;
     --card-foreground: 210 20% 98%;
- 
+
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
- 
+
     --primary: 210 20% 98%;
     --primary-foreground: 220.9 39.3% 11%;
- 
+
     --secondary: 215 27.9% 16.9%;
     --secondary-foreground: 210 20% 98%;
- 
+
     --muted: 215 27.9% 16.9%;
     --muted-foreground: 217.9 10.6% 64.9%;
- 
+
     --accent: 215 27.9% 16.9%;
     --accent-foreground: 210 20% 98%;
- 
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
- 
+
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
     --ring: 216 12.2% 83.9%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
@@ -86,7 +91,7 @@ html,body,:root{
     @apply bg-background text-foreground;
   }
 }
-.cl-internal-1ukv4gz{
+.cl-internal-1ukv4gz {
   display: none;
 }
 
@@ -159,7 +164,8 @@ html,body,:root{
 /* YourComponent.css or styles.scss */
 
 @keyframes breathe {
-  0%, 100% {
+  0%,
+  100% {
     border: 2px solid transparent;
   }
   50% {
@@ -177,57 +183,61 @@ html,body,:root{
 
 .breathing-border {
   /* Hover styles */
-  border: 2px solid #1F2544; /* Adjust the blue-500 color code as needed */
+  border: 2px solid #1f2544; /* Adjust the blue-500 color code as needed */
   animation: breathe 2s infinite;
   transform: scale(1.05); /* Adjust the scale factor as needed */
 }
-.cl-userButtonPopoverFooter{
+.cl-userButtonPopoverFooter {
   display: none;
 }
-.cl-internal-1tzju74{
-  background:hsl(270deg 2.65% 6.28%);
-  cololr:white;
+.cl-internal-1tzju74 {
+  background: hsl(270deg 2.65% 6.28%);
+  cololr: white;
 }
-.cl-navbarButton,.cl-headerSubtitle{
-  color:#c700c7;
+.cl-navbarButton,
+.cl-headerSubtitle {
+  color: #c700c7;
 }
-.cl-headerTitle{
-  color:#c700c7;
+.cl-headerTitle {
+  color: #c700c7;
 }
-.cl-profileSectionTitleText, .cl-internal-wsfb2o,.cl-internal-1f1y0d9,.cl-internal-cbs77g{
-  color:white;
+.cl-profileSectionTitleText,
+.cl-internal-wsfb2o,
+.cl-internal-1f1y0d9,
+.cl-internal-cbs77g {
+  color: white;
 }
-.cl-internal-1jn827z{
-  color:whitesmoke;
+.cl-internal-1jn827z {
+  color: whitesmoke;
 }
-.cl-internal-1x84u7h{
-  color:#c700c7;
-  font-size:12px;
-  letter-spacing:'10px'
+.cl-internal-1x84u7h {
+  color: #c700c7;
+  font-size: 12px;
+  letter-spacing: "10px";
 }
-.cl-internal-zglecb{
-  color:red;
+.cl-internal-zglecb {
+  color: red;
 }
-.cl-userButtonPopoverCard{
-  background:#161618;
+.cl-userButtonPopoverCard {
+  background: #161618;
 }
-.cl-userPreviewSecondaryIdentifier,.cl-userButtonPopoverActionButtonText{
-  color:white;
+.cl-userPreviewSecondaryIdentifier,
+.cl-userButtonPopoverActionButtonText {
+  color: white;
 }
-.cl-userButtonPopoverActionButtonIconBox{
+.cl-userButtonPopoverActionButtonIconBox {
   background: white;
-  wdith:40px;
-  height:40px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  border-radius:5px;
-  
+  wdith: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
 }
 .cl-userButtonPopoverActionButtonIcon {
-  height:20px;
-  width:20px;
+  height: 20px;
+  width: 20px;
 }
-.cl-userButtonPopoverActionButton:hover{
-  background:#212329;
+.cl-userButtonPopoverActionButton:hover {
+  background: #212329;
 }

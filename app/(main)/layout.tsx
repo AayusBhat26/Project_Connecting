@@ -7,7 +7,7 @@ const MainLayout = async ({ children }: {
       return (<div className="h-full">
 
             {/* creating the view single hub responsive, forgot to add the code for login and signup */}
-            <div className="hidden md:flex h-full w-[72px] z-30 flex-col fixed right-0 inset-y-0">
+            <div className="hidden md:flex h-full w-[60px] z-30 flex-col fixed right-0 inset-y-0">
                   {/* right-0 inset-y-0*/}
                   <TaskbarNavigation />
             </div>

@@ -87,6 +87,13 @@ const ChannelIdPage = async ({
                               />
                         )
                   }
+                  {channel.type === ChannelType.CODE && (
+                        <div>
+                              <h1>test</h1>
+                        </div>
+                  )
+
+                  }
             </div>
       );
 }

@@ -36,11 +36,10 @@ export const NavigationItem = ({
                   side="right"
                   align="center"
                   label={name || ""}
-
             >
                   <button
                         onClick={onClick}
-                        className="group relative flex items-center  "
+                        className="relative flex items-center border-8 "
                   >
                         <div className={cn(
                               "absolute left-0 bg-red-400 rounded-r-full transition-all w-[4px]",
@@ -48,6 +47,7 @@ export const NavigationItem = ({
                               params?.serverId === id ? "h-[36px]" : "h-[22px]",
                               params?.serverId !== id && "group-focus:h-[50px]"
                         )} />
+
                         <div className={cn(
                               "relative group flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden",
                               params?.serverId === id && "bg-primary text-primary rounded-[16px]"
@@ -66,7 +66,7 @@ export const NavigationItem = ({
                                                 <div className=" text-black dark:text-white font-bold mb-[20px]">
                                                       {name}
                                                 </div>
-                                                <div className="flex justify-center align-bottom w-full h-full line-clamp-2  text-center text-black dark:text-white font-bold">
+                                                <div className="flex justify-center w-full h-full font-bold text-center text-black align-bottom line-clamp-2 dark:text-white">
                                                       {
                                                             createdAt?.toString().slice(0, 16)
                                                       }
